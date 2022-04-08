@@ -3,14 +3,17 @@ import {
   ChakraProvider,
   ColorModeProvider,
   useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react";
-import customTheme from "../styles/theme";
+import customTheme from "@/styles/theme";
 import { Global, css } from "@emotion/react";
-import { prismLightTheme, prismDarkTheme } from "../styles/prism";
+import { prismLightTheme, prismDarkTheme } from "@/styles/prism";
 import Footer from '@/components/Footer';
+import NextProgress from 'nextjs-progressbar';
 
 const GlobalStyle = ({ children } : { children: any }) => {
   const { colorMode } = useColorMode();
+  const bar = useColorModeValue('#F05454', '#2D31FA'); 
 
   return (
     <>
@@ -36,6 +39,9 @@ const GlobalStyle = ({ children } : { children: any }) => {
             background: ${colorMode === "light" ? "#D8DEE9" : "#282a36"};
           }
         `}
+      />
+      <NextProgress
+      color={bar}
       />
       {children}
     <Footer />
