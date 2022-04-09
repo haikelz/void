@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import Container from "@/components/Container";
+import Giscus from "@giscus/react";
 
 const BlogLayout = ({ children, frontMatter } : { children: any, frontMatter: any}) => {
   const { colorMode } = useColorMode();
@@ -72,20 +73,21 @@ const BlogLayout = ({ children, frontMatter } : { children: any, frontMatter: an
           </Flex>
         </Flex>
         {children}
-        <script 
-          src="https://giscus.app/client.js"
-          data-repo="haikelz/void"
-          data-repo-id="R_kgDOG4fALg"
-          data-category="[ENTER CATEGORY NAME HERE]"
-          data-category-id="[ENTER CATEGORY ID HERE]"
-          data-mapping="pathname"
-          data-reactions-enabled="0"
-          data-emit-metadata="0"
-          data-theme="https://giscus.app/themes/custom_example.css"
-          data-lang="en"
-          crossOrigin="anonymous"
-          async>
-        </script>
+        <Giscus
+          id="comments"
+          repo="haikelz/void"
+          repoId="R_kgDOG4fALg"
+          category=""
+          categoryId=""
+          mapping="specific"
+          term="Welcome"
+          reactionsEnabled="0"
+          emitMetadata="0"
+          inputPosition="bottom"
+          theme="https://giscus.app/themes/custom_example.css"
+          lang="en"
+          loading="lazy"
+        />
       </Stack>
     </Container>
   );
