@@ -72,6 +72,20 @@ const BlogLayout = ({ children, frontMatter } : { children: any, frontMatter: an
           </Flex>
         </Flex>
         {children}
+        <script 
+          src="https://giscus.app/client.js"
+          data-repo="haikelz/void"
+          data-repo-id="R_kgDOG4fALg"
+          data-category="[ENTER CATEGORY NAME HERE]"
+          data-category-id="[ENTER CATEGORY ID HERE]"
+          data-mapping="pathname"
+          data-reactions-enabled="0"
+          data-emit-metadata="0"
+          data-theme="https://giscus.app/themes/custom_example.css"
+          data-lang="en"
+          crossOrigin="anonymous"
+          async>
+        </script>
       </Stack>
     </Container>
   );
