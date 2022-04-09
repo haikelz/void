@@ -73,6 +73,8 @@ const BlogLayout = ({ children, frontMatter } : { children: any, frontMatter: an
           </Flex>
         </Flex>
         {children}
+        <Flex pt={16} width={'full'}> 
+
         <Giscus
           id="comments"
           repo="haikelz/void"
@@ -88,6 +90,8 @@ const BlogLayout = ({ children, frontMatter } : { children: any, frontMatter: an
           lang="en"
           loading="lazy"
         />
+
+        </Flex>
       </Stack>
     </Container>
   );
