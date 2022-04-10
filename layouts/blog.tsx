@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import Container from "@/components/Container";
-import Giscus from "@giscus/react";
+import Comments from '@/layouts/comments'; 
 
 const BlogLayout = ({ children, frontMatter } : { children: any, frontMatter: any}) => {
   const { colorMode } = useColorMode();
@@ -19,6 +19,7 @@ const BlogLayout = ({ children, frontMatter } : { children: any, frontMatter: an
     light: "gray.700",
     dark: "gray.400",
   };
+
   const router = useRouter();
   const slug = router.asPath.replace("/blog", "");
   return (
@@ -43,55 +44,55 @@ const BlogLayout = ({ children, frontMatter } : { children: any, frontMatter: an
           maxWidth="700px"
           w="100%"
         >
-          <Heading letterSpacing="tight" mb={2} as="h1" size="2xl">
+          <Heading letterSpacing="tight" textAlign={'center'} textTransform={'uppercase'} lineHeight={1.5} mb={2} as="h1" size="2xl">
             {frontMatter.title}
           </Heading>
           <Flex
-            justify="space-between"
-            align={["initial", "center"]}
-            direction={["column", "row"]}
+            justify="center"
+            align={["initial", "center"]} 
             mt={2}
             w="100%"
             mb={4}
           >
-            <Flex align="center">
+              <Text fontSize="sm" color={textColor[colorMode]}>
+                {frontMatter.by}  
+                {format(parseISO(frontMatter.publishedAt), "MMMM dd, yyyy")}
+                {`. ${frontMatter.readingTime.text}`}
+              </Text>
+              
+
+
+          </Flex>
+        </Flex>
+        {children}
+        <Text fontWeight={'medium'} pt={8} fontSize={'xl'}>Penulis</Text>
+        <Flex
+            align={["initial", "center"]}
+            direction={["column", "row"]}
+            w="100%"
+            
+          >
+            <Flex align="center" justifyContent={'flex-start'}>
               <Avatar
-                size="xs"
+                size="md"
                 name="Haikel"
                 src="https://avatars.githubusercontent.com/u/77146709?v=4"
                 mr={2}
               />
-              <Text fontSize="sm" color={textColor[colorMode]}>
-                {frontMatter.by} 
-                {"Haikel / "}
-                {format(parseISO(frontMatter.publishedAt), "MMMM dd, yyyy")}
-              </Text>
-            </Flex>
-            <Text fontSize="sm" color="gray.500" minWidth="100px" mt={[2, 0]}>
-              {frontMatter.readingTime.text}
+
+            <Flex flexDirection={'column'}>
+            <Text fontSize="md" fontWeight={'medium'}>
+                Haikel 
             </Text>
+              <Text fontSize={'xs'} fontWeight={'normal'}>
+                Asak kawa ge pacak 
+              </Text>
+              </Flex>
+            </Flex> 
           </Flex>
-        </Flex>
-        {children}
-        <Flex pt={16} width={'full'}> 
-
-        <Giscus
-          id="comments"
-          repo="haikelz/void"
-          repoId="R_kgDOG4fALg"
-          category=""
-          categoryId=""
-          mapping="specific"
-          term="Welcome"
-          reactionsEnabled="0"
-          emitMetadata="0"
-          inputPosition="bottom"
-          theme="https://giscus.app/themes/custom_example.css"
-          lang="en"
-          loading="lazy"
-        />
-
-        </Flex>
+        <Flex pt={20} width={'full'} flexDirection={'column'}> 
+        <Comments />
+        </Flex> 
       </Stack>
     </Container>
   );
